@@ -5,23 +5,39 @@ import Aux from '../../hoc/Aux';
 class BurgerBuilder extends Component {
   state = {
     ingredients: {
-      cheese: 1,
-      salad: 2,
-      bacon: 3,
-      meat: 2
+      cheese: 0,
+      salad: 0,
+      bacon: 0,
+      meat: 0
     }
   }
 
-  addCheese = () => {
-    const cheeseCt = this.state.ingredients.cheese + 1
-    const newState = {...this.state.ingredients, cheese: cheeseCt }
-    this.setState({ ingredients: newState })
+  // addCheese = () => {
+  //   const cheeseCt = this.state.ingredients.cheese + 1
+  //   const newState = { ...this.state.ingredients, cheese: cheeseCt }
+  //   this.setState({ ingredients: newState })
+  // }
+
+  // removeCheese = () => {
+  //   const cheeseCt = this.state.ingredients.cheese - 1
+  //   const newState = { ...this.state.ingredients, cheese: cheeseCt }
+  //   this.setState({ ingredients: newState })
+  // }
+
+  addIngredient = (event) => {
+    event.preventDefault()
+    const ingredient = event.target.value
+    const ingredientCt = this.state.ingredients[ingredient] + 1
+    const updatedIngredients = { ...this.state.ingredients, [ingredient]: ingredientCt }
+    this.setState({ ingredients: updatedIngredients })
   }
-  
-  removeCheese = () => {
-    const cheeseCt = this.state.ingredients.cheese - 1
-    const newState = {...this.state.ingredients, cheese: cheeseCt }
-    this.setState({ ingredients: newState })
+
+  subtractIngredient = (event) => {
+    event.preventDefault()
+    const ingredient = event.target.value
+    const ingredientCt = this.state.ingredients[ingredient] - 1
+    const updatedIngredients = { ...this.state.ingredients, [ingredient]: ingredientCt }
+    this.setState({ ingredients: updatedIngredients })
   }
 
   render() {
@@ -29,8 +45,19 @@ class BurgerBuilder extends Component {
       <Aux>
         <Burger ingredients={this.state.ingredients} />
         <div>Build Controls</div>
-        <button onClick={this.addCheese}>Add 1 Cheese</button>
-        <button onClick={this.removeCheese}>Remove 1 Cheese</button>
+        <button onClick={this.addIngredient} value='cheese'>+ cheese</button>
+        <button onClick={this.subtractIngredient} value='cheese'>- cheese</button>
+
+        <button onClick={this.addIngredient} value='meat'>+ meat</button>
+        <button onClick={this.subtractIngredient} value='meat'>- meat</button>
+
+        <button onClick={this.addIngredient} value='bacon'>+ bacon</button>
+        <button onClick={this.subtractIngredient} value='bacon'>- bacon</button>
+
+        <button onClick={this.addIngredient} value='salad'>+ salad</button>
+        <button onClick={this.subtractIngredient} value='salad'>- salad</button>
+
+
       </Aux>
     )
   }
