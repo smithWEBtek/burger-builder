@@ -24,7 +24,7 @@ class BurgerBuilder extends Component {
   subtractIngredient = (event) => {
     event.preventDefault()
     const ingredient = event.target.value
-    const ingredientCt = this.state.ingredients[ingredient] - 1
+    const ingredientCt = this.state.ingredients[ingredient] > 0 ? this.state.ingredients[ingredient] - 1 : this.state.ingredients[ingredient]
     const updatedIngredients = { ...this.state.ingredients, [ingredient]: ingredientCt }
     this.setState({ ingredients: updatedIngredients })
   }
