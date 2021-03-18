@@ -10,7 +10,14 @@ const controls = [
 ]
 const buildControls = (props) => {
   const renderedControls = controls.map(ctrl => {
-    return <BuildControl key={ctrl.label} label={ctrl.label} />
+    return (
+      <BuildControl
+        key={ctrl.label}
+        label={ctrl.label}
+        type={ctrl.type}
+        fnAdd={props.fnAdd}
+        fnRemove={props.fnRemove} />
+    )
   })
 
   return (
