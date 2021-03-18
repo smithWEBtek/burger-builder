@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Burger from '../../components/Burger/Burger'
-import BuildControls from '../../components/BuildControls/BuildControls'
+import BuildControls from '../../components/Burger/BuildControls/BuildControls'
 import Aux from '../../hoc/Aux';
 
 class BurgerBuilder extends Component {
@@ -13,32 +13,12 @@ class BurgerBuilder extends Component {
     }
   }
 
-  addIngredient = (event) => {
-    event.preventDefault()
-    const ingredient = event.target.value
-    const ingredientCt = this.state.ingredients[ingredient] + 1
-    const updatedIngredients = { ...this.state.ingredients, [ingredient]: ingredientCt }
-    this.setState({ ingredients: updatedIngredients })
-  }
-
-  subtractIngredient = (event) => {
-    event.preventDefault()
-    const ingredient = event.target.value
-    const ingredientCt = this.state.ingredients[ingredient] > 0 ? this.state.ingredients[ingredient] - 1 : this.state.ingredients[ingredient]
-    const updatedIngredients = { ...this.state.ingredients, [ingredient]: ingredientCt }
-    this.setState({ ingredients: updatedIngredients })
-  }
-
   render() {
     return (
       <Aux>
         <Burger ingredients={this.state.ingredients} />
         <hr />
-        <h3>Burger Builder Controls</h3>
-        <BuildControls 
-          ingredients={Object.keys(this.state.ingredients)}
-          fnAdd={this.addIngredient}
-          fnSubtract={this.subtractIngredient} />
+        <BuildControls />
       </Aux>
     )
   }
