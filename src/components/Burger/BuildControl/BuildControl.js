@@ -5,11 +5,11 @@ const buildControl = (props) => (
   <div className={classes.BuildControl}>
     <div className={classes.Label}>{props.label}</div>
     <button className={classes.Less}
-      onClick={() => props.fnRemove(props.type)}>Less</button>
+      onClick={props.fnIngredientRemove}>Less</button>
 
     <button
       className={classes.More}
-      onClick={() => props.fnAdd(props.type)}>More</button>
+      onClick={props.fnIngredientAdd}>More</button>
   </div>
 )
 

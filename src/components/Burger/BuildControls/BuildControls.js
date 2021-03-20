@@ -15,8 +15,8 @@ const buildControls = (props) => {
         key={ctrl.label}
         label={ctrl.label}
         type={ctrl.type}
-        fnAdd={props.fnAdd}
-        fnRemove={props.fnRemove} />
+        fnIngredientAdd={() => props.fnIngredientAdd(ctrl.type)}
+        fnIngredientRemove={() => props.fnIngredientRemove(ctrl.type)} />
     )
   })
 
