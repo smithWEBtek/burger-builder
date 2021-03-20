@@ -16,12 +16,15 @@ const buildControls = (props) => {
         label={ctrl.label}
         type={ctrl.type}
         fnIngredientAdd={() => props.fnIngredientAdd(ctrl.type)}
-        fnIngredientRemove={() => props.fnIngredientRemove(ctrl.type)} />
+        fnIngredientRemove={() => props.fnIngredientRemove(ctrl.type)}
+        disabled={props.disabled[ctrl.type]} />
     )
   })
 
   return (
     <div className={classes.BuildControls}>
+      {/* <p className={classes.Price}>Price: ${(Math.round(props.price * 100) / 100).toFixed(2)}</p> */}
+      <p className={classes.Price}>Price: ${props.price.toFixed(2)}</p>
       {renderedControls}
     </div>
   )
