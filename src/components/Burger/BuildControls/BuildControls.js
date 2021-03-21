@@ -21,27 +21,20 @@ const buildControls = (props) => {
     )
   })
 
-  let orderButton = null;
-  if (props.purchasable) {
-    orderButton = (
-      <button
-        className={classes.OrderButton}
-        onClick={() => props.fnPurchase()}
-        disabled={!props.purchasable}
-      >ORDER NOW</button>
-    )
-  } else {
-    orderButton = null;
-  }
+  let orderButton = (
+    <button
+      className={classes.OrderButton}
+      onClick={() => props.fnPurchase()}
+      disabled={!props.purchasable}>ORDER NOW</button>
+  )
 
+  return (
+    <div className={classes.BuildControls}>
+      <p className={classes.Price}>Price: ${props.price.toFixed(2)}</p>
+      {renderedControls}
+      {orderButton}
+    </div>
+  )
+}
 
-    return (
-      <div className={classes.BuildControls}>
-        <p className={classes.Price}>Price: ${props.price.toFixed(2)}</p>
-        {renderedControls}
-        {orderButton}
-      </div>
-    )
-  }
-
-  export default buildControls;
+export default buildControls;
