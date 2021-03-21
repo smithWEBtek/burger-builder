@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
 import Aux from '../../hoc/Aux';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 
 const INGREDIENT_PRICES = {
-  salad: 0.5,
   cheese: 0.4,
-  meat: 1.3,
-  bacon: 0.7
+  bacon: 0.7,
+  salad: 0.5,
+  meat: 1.3
 }
 class BurgerBuilder extends Component {
   state = {
@@ -18,7 +20,8 @@ class BurgerBuilder extends Component {
       meat: 0
     },
     totalPrice: 4,
-    purchasable: false
+    purchasable: false,
+    purchasing: false
   }
 
   addIngredientHandler = (type) => {
@@ -69,9 +72,7 @@ class BurgerBuilder extends Component {
   }
 
   purchaseHandler = () => {
-    if (this.state.purchasable) {
-      alert("order processing")
-    }
+    this.setState({ purchasing: true })
   }
 
   render() {
@@ -82,18 +83,22 @@ class BurgerBuilder extends Component {
 
     return (
       <Aux>
-        <Burger ingredients={this.state.ingredients} />
-        <hr />
-        <BuildControls
-          fnIngredientAdd={this.addIngredientHandler}
-          fnIngredientRemove={this.removeIngredientHandler}
-          disabled={disabledInfo}
-          price={this.state.totalPrice}
-          fnPurchase={this.purchaseHandler}
-          purchasable={this.state.purchasable} />
+          <Modal show={this.state.purchasing}>
+            <OrderSummary ingredients={this.state.ingredients} />
+          </Modal>
+          <Burger ingredients={this.state.ingredients} />
+          <BuildControls
+            fnIngredientAdd={this.addIngredientHandler}
+            fnIngredientRemove={this.removeIngredientHandler}
+            disabled={disabledInfo}
+            price={this.state.totalPrice}
+            fnOrdered={this.purchaseHandler}
+            purchasable={this.state.purchasable}
+            purchasing={this.state.purchasing}
+            ingredients={this.state.ingredients} />
       </Aux>
     )
   }
 }
 
-export default BurgerBuilder;
+export { BurgerBuilder, INGREDIENT_PRICES };
