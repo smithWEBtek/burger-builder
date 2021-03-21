@@ -35,7 +35,7 @@ class BurgerBuilder extends Component {
       ingredients: updatedIngredients,
       purchasable: true
     })
-    this.isPurchasable()
+    this.updatePurchaseState(updatedIngredients)
   }
 
   removeIngredientHandler = (type) => {
@@ -54,21 +54,21 @@ class BurgerBuilder extends Component {
       totalPrice: newPrice,
       ingredients: updatedIngredients
     })
-    this.isPurchasable()
+    this.updatePurchaseState(updatedIngredients)
   }
 
-  isPurchasable() {
-    const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    const values = []
-    for (let ing in this.state.ingredients) {
-      values.push(this.state.ingredients[ing])
-    }
-    const ingredientsTotal = values.reduce(reducer)
-    this.setState({ purchasable: ingredientsTotal === 0 })
+  updatePurchaseState(ingredients) {
+    const sum = Object.keys(ingredients)
+      .map(igKey => {
+        return ingredients[igKey]
+      })
+      .reduce((accumulator, currentValue) => {
+        return accumulator + currentValue
+      }, 0);
+    this.setState({ purchasable: sum > 0 })
   }
 
   purchaseHandler = () => {
-    this.isPurchasable()
     if (this.state.purchasable) {
       alert("order processing")
     }
