@@ -21,13 +21,27 @@ const buildControls = (props) => {
     )
   })
 
-  return (
-    <div className={classes.BuildControls}>
-      {/* <p className={classes.Price}>Price: ${(Math.round(props.price * 100) / 100).toFixed(2)}</p> */}
-      <p className={classes.Price}>Price: ${props.price.toFixed(2)}</p>
-      {renderedControls}
-    </div>
-  )
-}
+  let orderButton = null;
+  if (props.purchasable) {
+    orderButton = (
+      <button
+        className={classes.OrderButton}
+        onClick={() => props.fnPurchase()}
+        disabled={!props.purchasable}
+      >ORDER NOW</button>
+    )
+  } else {
+    orderButton = null;
+  }
 
-export default buildControls;
+
+    return (
+      <div className={classes.BuildControls}>
+        <p className={classes.Price}>Price: ${props.price.toFixed(2)}</p>
+        {renderedControls}
+        {orderButton}
+      </div>
+    )
+  }
+
+  export default buildControls;
