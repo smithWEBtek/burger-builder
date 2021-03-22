@@ -8,7 +8,16 @@ const controls = [
   { label: 'Cheese', type: 'cheese' },
   { label: 'Meat', type: 'meat' }
 ]
+
 const buildControls = (props) => {
+
+  const orderButton = (
+    <button
+      className={classes.OrderButton}
+      disabled={!props.purchasable}
+      onClick={() => props.fnOrdered()}>ORDER NOW</button>
+  )
+
   const renderedControls = controls.map(ctrl => {
     return (
       <BuildControl
@@ -21,15 +30,9 @@ const buildControls = (props) => {
     )
   })
 
-  let orderButton = (
-    <button
-      className={classes.OrderButton}
-      onClick={() => props.fnPurchase()}
-      disabled={!props.purchasable}>ORDER NOW</button>
-  )
-
   return (
     <div className={classes.BuildControls}>
+      <h3 className={classes.NavItem}>Build Controls</h3>
       <p className={classes.Price}>Price: ${props.price.toFixed(2)}</p>
       {renderedControls}
       {orderButton}

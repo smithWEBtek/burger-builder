@@ -4,10 +4,11 @@ import classes from './Layout.module.css';
 
 const Layout = (props) => (
   <Aux>
-    <h3>Toolbar</h3>
+    <h3 className={classes.NavItem}>Toolbar</h3>
     <hr />
-    <h3>SideDrawer, Backdrop</h3>
+    <h3 className={classes.NavItem}>SideDrawer, Backdrop</h3>
     <hr />
+    <h3 className={classes.NavItem}>Burger Builder</h3>
     <main className={classes.Content}>
       {props.children}
     </main>
