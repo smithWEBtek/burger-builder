@@ -21,11 +21,11 @@ const orderSummary = (props) => {
       </ul>
       <Button 
         btnType="Danger"
-        clicked={props.cancel}>CANCEL</Button>
+        clicked={props.purchaseCancelled}>CANCEL</Button>
       
       <Button
         btnType="Success"
-        clicked={props.continue}>CONTINUE</Button>
+        clicked={props.purchaseContinued}>CONTINUE</Button>
     </Aux>
   )
 }
