@@ -32,7 +32,6 @@ const buildControls = (props) => {
 
   return (
     <div className={classes.BuildControls}>
-      <h3 className={classes.NavItem}>Build Controls</h3>
       <p className={classes.Price}>Price: ${props.price.toFixed(2)}</p>
       {renderedControls}
       {orderButton}
