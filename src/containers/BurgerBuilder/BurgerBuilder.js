@@ -76,6 +76,10 @@ class BurgerBuilder extends Component {
     this.setState({ purchasing: true })
   }
 
+  purchaseOrderHandler = () => {
+    this.setState({ purchasing: true })
+  }
+
   purchasedCancelledHandler = () => {
     this.setState({ purchasing: false })
   }
@@ -88,24 +92,25 @@ class BurgerBuilder extends Component {
 
     return (
       <Aux>
-          <Modal 
-            show={this.state.purchasing}
-            modalClosed={this.purchasedCancelledHandler}>
-            <OrderSummary 
-              ingredients={this.state.ingredients}
-              purchaseCancelled={this.purchasedCancelledHandler}
-              purchaseContinued={this.purchaseContinuedHandler} />
-          </Modal>
-          <Burger ingredients={this.state.ingredients} />
-          <BuildControls
-            fnIngredientAdd={this.addIngredientHandler}
-            fnIngredientRemove={this.removeIngredientHandler}
-            disabled={disabledInfo}
-            price={this.state.totalPrice}
-            fnOrdered={this.purchaseContinuedHandler}
-            purchasable={this.state.purchasable}
-            purchasing={this.state.purchasing}
-            ingredients={this.state.ingredients} />
+        <Modal
+          show={this.state.purchasing}
+          modalClosed={this.purchasedCancelledHandler}>
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            purchaseCancelled={this.purchasedCancelledHandler}
+            purchaseContinued={this.purchaseContinuedHandler}
+            price={this.state.totalPrice} />
+        </Modal>
+        <Burger ingredients={this.state.ingredients} />
+        <BuildControls
+          fnIngredientAdd={this.addIngredientHandler}
+          fnIngredientRemove={this.removeIngredientHandler}
+          disabled={disabledInfo}
+          price={this.state.totalPrice}
+          fnOrdered={this.purchaseOrderHandler}
+          purchasable={this.state.purchasable}
+          purchasing={this.state.purchasing}
+          ingredients={this.state.ingredients} />
       </Aux>
     )
   }
