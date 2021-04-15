@@ -8,9 +8,10 @@ const toolbar = () => {
   return (
     <header className={classes.Toolbar}>
       <div>MENU</div>
-      <NavigationItems />
       <Logo />
-      <nav>...</nav>
+      <nav>
+        <NavigationItems />
+      </nav>
     </header>
   )
 }
